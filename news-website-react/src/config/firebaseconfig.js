@@ -18,4 +18,3 @@ const provider = new GoogleAuthProvider();
 provider.setCustomParameters({
   client_id: "1025156195095-1jnl9et0cj3ij1mao8kfedskgdan5mk2", // Paste your Web client ID
 });
-export { auth, provider, signInWithPopup };

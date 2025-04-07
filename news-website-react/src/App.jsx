@@ -12,6 +12,8 @@ import Group1 from "./pages/group1";
 import Group2 from "./pages/group2";
 import Group3 from "./pages/group3";
 import Group4 from "./pages/group4";
+import MapPage from './pages/MapPage'; 
+
 const PrivateRoute = ({ children }) => {
   return localStorage.getItem("token") ? children : <Navigate to="/login" />;
 };
@@ -33,6 +35,7 @@ function App() {
         <Route path="/group2" element={<Group2 />} />
         <Route path="/group3" element={<Group3 />} />
         <Route path="/group4" element={<Group4 />} />
+        <Route path="/map" element={<MapPage />} />
     </Routes>
   );
 }
