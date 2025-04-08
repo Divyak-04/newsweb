@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { auth, provider, signInWithPopup } from "../config/firebaseconfig"; // Import Firebase config
+import { auth, provider, signInWithPopup } from "../config/firebaseconfig";
+ // Import Firebase config
 import { FaGoogle } from "react-icons/fa"; // Import Google Icon
 
 const Login = () => {
