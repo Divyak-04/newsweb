@@ -27,7 +27,7 @@ const GoogleTranslateDropdown = () => {
   }, []);
 
   return (
-    <div className="inline-block">
+    <div className="inline-block ">
     <div
       id="google_translate_element"
       className=" bg-white shadow-md w-48"

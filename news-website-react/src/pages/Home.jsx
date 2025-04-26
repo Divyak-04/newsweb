@@ -20,7 +20,7 @@ const Home = () => {
   const [chatOpen, setChatOpen] = useState(false);
   const [messages, setMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState("");
-
+  console.log("test",darkMode)
   const fetchNews = async () => {
     try {
       let url = `https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=${import.meta.env.VITE_NEWS_API_KEY}`;
@@ -111,31 +111,34 @@ const Home = () => {
   };
 
   return (
-    <motion.div className={`min-h-screen p-6 transition-all duration-500 ${darkMode ? "bg-gray-900 text-white" : "bg-white text-black"}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8 }}>
-      <nav className="fixed top-0 left-0 w-full h-16 text-white px-4 z-50 bg-gray-800 p-4 mb-5 shadow-lg flex justify-between items-center rounded-b-lg">
+    <motion.div className={`relative  min-h-screen p-6 transition-all duration-500  ${darkMode ? "bg-gray-900 text-white" : "bg-white text-black"}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8 }}>
+      <nav className=" fixed top-0 left-0 w-full h-16 text-white px-4 z-50 bg-gray-800 p-4 mb-5 shadow-lg flex justify-between items-center rounded-b-lg ">
         <button onClick={() => setMenuOpen(true)} className="text-white text-3xl">
           <FaBars />
         </button>
         <h2 className="text-white text-4xl font-extrabold font-serif tracking-wide ml-10 flex items-center gap-3">
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-400 to-gray-600">The Digital Daily</span>
         </h2>
+
         <button onClick={() => setDarkMode(!darkMode)} className="text-3xl p-2 rounded-full shadow-md bg-gray-600 transition-all duration-300 hover:scale-110 mr-[80px]">
           {darkMode ? <MdLightMode className="text-yellow-400" /> : <MdDarkMode className="text-gray-700" />}
         </button>
       </nav>
 
-      {/* Weather Section */}
-      {weather && (
-        <motion.div className="fixed top-16 right-4 bg-white dark:bg-gray-800 p-2 rounded-lg shadow-lg flex items-center gap-2 transition-all duration-300 border border-gray-300 z-50">
-          <img src={weather.icon} alt={weather.condition} className="w-8 h-8" />
-          <div className="text-sm">
-            <p className="font-semibold">{weather.city}</p>
-            <p>{Math.floor(weather.temp)}°C</p>
-          </div>
-        </motion.div>
-      )}
 
       <div className="pt-24">
+      {/* Weather Section */}
+      <div className="flex  justify-end">
+        {weather && (
+          <motion.div className={`${darkMode ? "bg-[#111827] border-gray-600" : "bg-white border-gray-300"} w-[200px] h-[80px] p-2 rounded-lg shadow-lg flex items-center gap-2 transition-all duration-300`}>
+          <img src={weather.icon} alt={weather.condition} className="w-8 h-8" />
+            <div className="text-sm">
+              <p className="font-semibold">{weather.city}</p>
+              <p>{Math.floor(weather.temp)}°C</p>
+            </div>
+          </motion.div>
+        )}
+      </div>
         {/* Header */}
         <motion.h1
           className="text-5xl font-extrabold text-center mb-10 drop-shadow-lg"
@@ -145,11 +148,12 @@ const Home = () => {
         >
           📰 Trending News
         </motion.h1>
-        <div className="flex flex-col md:flex-row items-center justify-center gap-6 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
-          <div className="w-full md:w-1/4">
-            <GoogleTranslateDropdown className="w-full p-4 border-2 rounded-lg bg-white dark:bg-gray-800 dark:text-white text-gray-700 font-semibold shadow-sm" />
+        {/* Translator */}
+        <div className={`${darkMode ? "bg-[#111827] shadow shadow-white" : "bg-white shadow shadow-black"} flex flex-col md:flex-row items-center justify-center gap-6 p-6 rounded-lg shadow-md`}>
+        <div className="w-full md:w-1/4">
+            <GoogleTranslateDropdown className="w-full p-4 border-2 rounded-lg bg-white dark:bg-gray-800 dark:text-white text-gray-700 font-semibold shadow-sm " />
           </div>
-          <motion.div whileHover={{ scale: 1.05 }} className="w-full md:w-1/4">
+          <motion.div whileHover={{ scale: 1.05 }} className="w-full md:w-1/4 ">
             <select onChange={(e) => setCategory(e.target.value)} className="w-full p-4 border-2 rounded-lg bg-white dark:bg-gray-800 dark:text-white text-gray-700 font-semibold shadow-sm" value={category}>
               <option value="">Select Category</option>
               <option value="general">General</option>
@@ -211,20 +215,22 @@ const Home = () => {
         </AnimatePresence>
         <motion.div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-10 ">
           {news.length > 0 ? (
-            news.map((article, index) => (
+            news.map((article, index) => ( 
               <div key={index} className="flex justify-center">
-                <motion.div className="bg-white min-h-[400px] max-h-[450px] overflow-y-auto dark:bg-gray-800 p-5 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 w-full">
-                  <img src={article.urlToImage || "https://via.placeholder.com/150"} alt="News" className="w-full h-48 object-cover rounded-lg mb-4" />
-                  <div className="min-h-[150px]">
-                    <h3 className="text-lg font-semibold">{article.title}</h3>
+                <motion.div className={`${darkMode==true?"bg-[#111827] shadow shadow-white":"bg-white shadow shadow-black"} min-h-[400px] max-h-[450px] overflow-y-auto dark:bg-gray-800 p-5 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 w-full `}>
+                  <img src={article.urlToImage || "https://via.placeholder.com/150"} alt="News" className="w-full h-48 object-cover rounded-lg mb-4"/>
+                  <div className="min-h-[150px] "> 
+                    <h3 className={darkMode==true?"text-white text-lg font-semibold":"text-black text-lg font-semibold" }>{article.title}</h3>
                     <p className="text-sm text-gray-600 dark:text-gray-300">{article.description || "No description available."}</p>
                     <p className="text-sm text-gray-500 dark:text-gray-400 mt-3">🗓 Published on: {new Date(article.publishedAt).toDateString()}</p>
                   </div>
-                  <div className="flex justify-between items-center p-3 bottom-0 left-0 bg-gray-100">
-                    <button onClick={() => { const speech = new SpeechSynthesisUtterance(article.title); speech.lang = "en-US"; speech.rate = 0.85; speech.pitch = 1.1; window.speechSynthesis.speak(speech); }} className="p-2 rounded-full bg-gray-600 text-white text-lg hover:bg-gray-700">
+                  <div className={`flex justify-between items-center p-3 bottom-0 left-0 ${darkMode ? 'bg-[#111827] shadow-none' : 'bg-white  shadow-none' }`}
+>
+
+                    <button onClick={() => { const speech = new SpeechSynthesisUtterance(article.title); speech.lang = "en-US"; speech.rate = 0.85; speech.pitch = 1.1; window.speechSynthesis.speak(speech); }} className="p-2 rounded-full bg-gray-600 text-white text-lg hover:bg-gray-700 ">
                       <FaVolumeUp />
                     </button>
-                    <button onClick={() => setSelectedIndex(index)} className="ml-2 p-2 rounded bg-gray-600 text-white hover:bg-gray-700">
+                    <button onClick={() => setSelectedIndex(index)} className="ml-2 p-2 rounded bg-gray-600 text-white hover:bg-gray-700 " >
                       Enlarge
                     </button>
                     <div className="relative ml-auto flex items-center">
