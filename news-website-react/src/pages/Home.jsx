@@ -257,7 +257,12 @@ const Home = () => {
       <AnimatePresence>
         {selectedIndex !== null && (
           <motion.div className="fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center p-4" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setSelectedIndex(null)}>
-            <motion.div className="relative bg-white dark:bg-gray-900 p-8 w-3/4 max-w-3xl h-5/6 overflow-y-auto shadow-xl newspaper-format" initial={{ scale: 0.8 }} animate={{ scale: 1 }} exit={{ scale: 0.8 }} onClick={(e) => e.stopPropagation()}>
+<motion.div
+  className={`${darkMode ? "bg-gray-900 shadow-white" : "bg-white shadow-black"} relative p-8 w-3/4 max-w-3xl h-5/6 overflow-y-auto newspaper-format shadow-xl`}
+  initial={{ scale: 0.8 }}
+  animate={{ scale: 1 }}
+  exit={{ scale: 0.8 }}
+  onClick={(e) => e.stopPropagation()}>
               <button className="absolute top-4 right-4 text-2xl text-red-600" onClick={() => setSelectedIndex(null)}>
                 <FaTimes />
               </button>
@@ -265,7 +270,7 @@ const Home = () => {
               <h3 className="text-center italic text-gray-500">Published on {new Date(news[selectedIndex]?.publishedAt).toDateString()}</h3>
               <img src={news[selectedIndex]?.urlToImage || "https://via.placeholder.com/600"} alt="News" className="w-full h-60 object-cover my-5 rounded-lg shadow-md" />
               <p className="text-justify text-lg leading-relaxed">{news[selectedIndex]?.content || "Full article content not available."}</p>
-              <p className="text-right mt-5 italic text-gray-600">
+              <p className="text-right mt-5 italic text-gray-600 ">
                 <a href={news[selectedIndex]?.url} target="_blank" rel="noopener noreferrer" className="hover:underline">
                   Read full article →
                 </a>
