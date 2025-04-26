@@ -2,8 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { auth, provider, signInWithPopup } from "../config/firebaseconfig";
- // Import Firebase config
-import { FaGoogle } from "react-icons/fa"; // Import Google Icon
+import { FaGoogle } from "react-icons/fa";
 
 const Login = () => {
     const [formData, setFormData] = useState({ email: "", password: "" });
@@ -29,12 +28,10 @@ const Login = () => {
         }
     };
 
-    // Google Sign-In Function
     const handleGoogleSignIn = async () => {
         try {
             const result = await signInWithPopup(auth, provider);
             const user = result.user;
-
             alert(`Welcome, ${user.displayName}`);
             navigate("/home");
         } catch (error) {
@@ -44,53 +41,63 @@ const Login = () => {
     };
 
     return (
-        <div className="flex items-center justify-center min-h-screen bg-gray-100">
-            <div className="bg-white shadow-lg rounded-lg p-8 max-w-md w-full">
-                <h2 className="text-3xl font-semibold text-blue-600 text-center mb-6">Login</h2>
-                {error && <p className="text-red-500 text-center mb-4">{error}</p>}
-                
-                <form onSubmit={handleSubmit} className="space-y-6">
-                    <input
-                        type="email"
-                        name="email"
-                        placeholder="Email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                        className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    />
-                    <input
-                        type="password"
-                        name="password"
-                        placeholder="Password"
-                        value={formData.password}
-                        onChange={handleChange}
-                        required
-                        className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    />
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100">
+            <div className="bg-white shadow-2xl rounded-2xl flex max-w-4xl w-full">
+                {/* Left Panel */}
+                <div className="w-1/2 bg-gradient-to-tr from-blue-500 to-purple-600 text-white p-10 rounded-l-2xl flex flex-col justify-center">
+                    <h2 className="text-4xl font-bold mb-4">Welcome Back!</h2>
+                    <p className="text-lg">Login to access your dashboard and explore more features.</p>
+                </div>
+
+                {/* Right Panel - Login Form */}
+                <div className="w-1/2 p-10">
+                    <h2 className="text-3xl font-semibold text-center text-gray-800 mb-6">Sign In</h2>
+                    {error && <p className="text-red-500 text-center mb-4">{error}</p>}
+
+                    <form onSubmit={handleSubmit} className="space-y-5">
+                        <input
+                            type="email"
+                            name="email"
+                            placeholder="Email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            required
+                            className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400"
+                        />
+                        <input
+                            type="password"
+                            name="password"
+                            placeholder="Password"
+                            value={formData.password}
+                            onChange={handleChange}
+                            required
+                            className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400"
+                        />
+                        <button
+                            type="submit"
+                            className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl font-semibold transition duration-300"
+                        >
+                            Login
+                        </button>
+                    </form>
+
+                    <div className="my-5 text-center text-gray-500">OR</div>
+
                     <button
-                        type="submit"
-                        className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg transition duration-300"
+                        onClick={handleGoogleSignIn}
+                        className="w-full bg-red-500 hover:bg-red-600 text-white py-3 rounded-xl font-semibold flex items-center justify-center space-x-3 transition duration-300"
                     >
-                        Login
+                        <FaGoogle className="w-5 h-5" />
+                        <span>Sign in with Google</span>
                     </button>
-                </form>
 
-                {/* Added Space Between Buttons */}
-                <div className="my-4 text-center text-gray-500">or</div>
-
-                {/* Google Sign-In Button */}
-                <button
-                    onClick={handleGoogleSignIn}
-                    className="w-full bg-red-500 hover:bg-red-600 text-white font-semibold py-2 rounded-lg transition duration-300 flex items-center justify-center space-x-2"
-                >
-                    <FaGoogle className="w-5 h-5" />
-                    <span>Sign in with Google</span>
-                </button>
-
-                <p className="text-center text-gray-600 mt-6">
-                    Don't have an account? <a href="/register" className="text-blue-600 hover:underline">Sign up</a>
-                </p>
+                    <p className="text-center text-gray-600 mt-6">
+                        Don't have an account?{" "}
+                        <a href="/register" className="text-blue-600 hover:underline font-medium">
+                            Sign up
+                        </a>
+                    </p>
+                </div>
             </div>
         </div>
     );

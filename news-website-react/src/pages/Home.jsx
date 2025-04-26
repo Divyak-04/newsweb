@@ -183,11 +183,11 @@ const Home = () => {
                   </button>
                   {examDropdown && (
                     <ul className="ml-4 bg-gray-700 rounded-md overflow-hidden">
-                      <li><Link to="group1" className="block p-2 hover:bg-gray-600">TNPSC Group 1</Link></li>
-                      <li><Link to="group2" className="block p-2 hover:bg-gray-600">TNPSC Group 2</Link></li>
-                      <li><Link to="group3" className="block p-2 hover:bg-gray-600">TNPSC Group 3</Link></li>
-                      <li><Link to="group4" className="block p-2 hover:bg-gray-600">TNPSC Group 4</Link></li>
-                      <li><Link to="/exam/upsc" className="block p-2 hover:bg-gray-600">UPSC</Link></li>
+                      <li><Link to="/group1" className="block p-2 hover:bg-gray-600">TNPSC Group 1</Link></li>
+                      <li><Link to="/group2" className="block p-2 hover:bg-gray-600">TNPSC Group 2</Link></li>
+                      <li><Link to="/group3" className="block p-2 hover:bg-gray-600">TNPSC Group 3</Link></li>
+                      <li><Link to="/group4" className="block p-2 hover:bg-gray-600">TNPSC Group 4</Link></li>
+                      
                     </ul>
                   )}
                 </li>
@@ -244,7 +244,7 @@ const Home = () => {
               </div>
             ))
           ) : (
-            <p className="text-center text-gray-500 text-lg dark:text-gray-300">No news found.</p>
+            <p className="text-center text-gray-500 text-lg dark:text-gray-300">Loading ...</p>
           )}
         </motion.div>
       </div>

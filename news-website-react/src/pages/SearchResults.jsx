@@ -71,7 +71,7 @@ const SearchResults = () => {
   return (
     <motion.div className={`min-h-screen p-6 transition-all duration-500 ${darkMode ? "bg-gray-900 text-white" : "bg-white text-black"}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8 }}>
       <nav className="fixed top-0 left-0 w-full h-16 text-white px-4 z-50 bg-gray-800 p-4 mb-5 shadow-lg flex justify-between items-center rounded-b-lg">
-        <h2 className="text-white text-xl font-bold">NewsHub</h2>
+        <h2 className="text-white text-xl font-bold">The Digital Daily</h2>
         <button onClick={() => setDarkMode(!darkMode)} className="text-3xl p-2 rounded-full shadow-md bg-white dark:bg-gray-800 transition-all duration-300 hover:scale-110">
           {darkMode ? <MdLightMode className="text-yellow-400" /> : <MdDarkMode className="text-gray-700" />}
         </button>
@@ -102,7 +102,7 @@ const SearchResults = () => {
         {/* News Display */}
         <motion.div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-10">
           {news.length === 0 ? (
-            <p className="text-gray-500 dark:text-gray-300 text-center col-span-3">No results found.</p>
+            <p className="text-gray-500 dark:text-gray-300 text-center col-span-3">Loading ...</p>
           ) : (
             news.map((article, index) => (
               <motion.div key={index} className="bg-white dark:bg-gray-800 p-5 rounded-lg shadow-md hover:shadow-xl">

@@ -53,7 +53,7 @@ const MapPage = () => {
             </div>
           ))
         ) : (
-          <p>Click on the map to see news from that location.</p>
+          <p></p>
         )}
       </div>
     </div>
