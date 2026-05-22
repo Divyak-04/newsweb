@@ -1,10 +1,11 @@
+
 import { Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
 import Category from "./pages/Category";
 import SearchResults from "./pages/SearchResults";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import Quiz from "./quiz";
+import Quiz from "./Quiz";
 import Fact from "./Fact";
 import GameContainer from "./Sudoku"; // or wherever the file is located
 import Timeline from "./timeline";
@@ -41,3 +42,4 @@ function App() {
 }
 
 export default App;
+

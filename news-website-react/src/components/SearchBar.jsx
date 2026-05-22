@@ -10,7 +10,8 @@ const SearchBar = ({ setQuery }) => {
     e.preventDefault();
     if (search.trim() !== "") {
       setQuery(search); // Fetch news automatically
-      navigate(`/search/${search}`);
+      navigate(`/sea
+        rch/${search}`);
     }
   };
 
