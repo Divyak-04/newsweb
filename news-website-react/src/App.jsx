@@ -8,7 +8,7 @@ import Register from "./pages/Register";
 import Quiz from "./Quiz";
 import Fact from "./Fact";
 import GameContainer from "./Sudoku"; // or wherever the file is located
-import Timeline from "./timeline";
+import Timeline from "./Timeline";
 import Group1 from "./pages/group1";
 import Group2 from "./pages/group2";
 import Group3 from "./pages/group3";
